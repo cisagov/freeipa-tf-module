@@ -5,8 +5,8 @@ data "aws_arn" "subnet" {
 }
 
 data "cloudinit_config" "configure_freeipa" {
-  gzip          = true
   base64_encode = true
+  gzip          = true
 
   #-----------------------------------------------------------------------------
   # Cloud Config parts
@@ -40,7 +40,6 @@ data "cloudinit_config" "configure_freeipa" {
   }
 
   part {
-    filename     = "freeipa-vars.yml"
     content_type = "text/cloud-config"
     content = templatefile(
       "${path.module}/cloud-init/freeipa-vars.tpl.yml", {
@@ -49,6 +48,7 @@ data "cloudinit_config" "configure_freeipa" {
         netbios_name = var.netbios_name
         realm        = var.realm
     })
+    filename   = "freeipa-vars.yml"
     merge_type = "list(append)+dict(recurse_array)+str()"
   }
 
@@ -61,7 +61,6 @@ data "cloudinit_config" "configure_freeipa" {
   # scripts directory.
 
   part {
-    filename = "link-nessus-agent.py"
     # Note that text/x-python is not supported here:
     # https://cloudinit.readthedocs.io/en/latest/explanation/format.html#mime-multi-part-archive
     content_type = "text/x-shellscript"
@@ -76,10 +75,10 @@ data "cloudinit_config" "configure_freeipa" {
         # This is the region where the IPA instance is being created
         ssm_region = data.aws_arn.subnet.region
     })
+    filename = "link-nessus-agent.py"
   }
 
   part {
-    filename = "configure-falcon-sensor.py"
     # Note that text/x-python is not supported here:
     # https://cloudinit.readthedocs.io/en/latest/explanation/format.html#mime-multi-part-archive
     content_type = "text/x-shellscript"
@@ -93,5 +92,6 @@ data "cloudinit_config" "configure_freeipa" {
         # created
         ssm_region = data.aws_arn.subnet.region
     })
+    filename = "configure-falcon-sensor.py"
   }
 }
