@@ -8,6 +8,7 @@ followed by the `terraform apply` command.
 Note that this example may create resources which cost money. Run
 `terraform destroy` when you no longer need these resources.
 
+<!-- BEGIN_TF_DOCS -->
 ## Requirements ##
 
 | Name | Version |
@@ -46,3 +47,4 @@ No inputs.
 | Name | Description |
 |------|-------------|
 | ipa\_server | The IPA server EC2 instance. |
+<!-- END_TF_DOCS -->
