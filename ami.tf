@@ -25,7 +25,7 @@ data "aws_ami" "freeipa" {
     values = ["ebs"]
   }
 
-  # This is the CyHy production (Raytheon) account
-  owners      = [var.ami_owner_account_id]
   most_recent = true
+  # This is the CyHy production (Raytheon) account
+  owners = [var.ami_owner_account_id]
 }

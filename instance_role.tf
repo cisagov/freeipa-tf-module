@@ -23,9 +23,9 @@ module "read_ssm_parameters" {
 # Create a policy that allows the SSM read role to be assumed
 data "aws_iam_policy_document" "assume_delegated_role_policy_doc" {
   statement {
-    effect = "Allow"
-
     actions = ["sts:AssumeRole"]
+
+    effect = "Allow"
 
     resources = [
       module.read_ssm_parameters.role.arn,
@@ -37,13 +37,13 @@ data "aws_iam_policy_document" "assume_delegated_role_policy_doc" {
 # the IPA master EC2 instance
 data "aws_iam_policy_document" "assume_role_doc" {
   statement {
-    effect = "Allow"
-
     actions = ["sts:AssumeRole"]
 
+    effect = "Allow"
+
     principals {
-      type        = "Service"
       identifiers = ["ec2.amazonaws.com"]
+      type        = "Service"
     }
   }
 }
@@ -61,14 +61,14 @@ resource "aws_iam_role_policy" "assume_delegated_role_policy" {
 
 # Attach the CloudWatch Agent policy to this role as well
 resource "aws_iam_role_policy_attachment" "cloudwatch_agent_policy_attachment" {
-  role       = aws_iam_role.ipa.id
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
+  role       = aws_iam_role.ipa.id
 }
 
 # Attach the SSM Agent policy to this role as well
 resource "aws_iam_role_policy_attachment" "ssm_agent_policy_attachment" {
-  role       = aws_iam_role.ipa.id
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  role       = aws_iam_role.ipa.id
 }
 
 # The instance profile to be used by the IPA master EC2 instance.
