@@ -50,15 +50,15 @@ module "ipa1" {
 
 | Name | Version |
 |------|---------|
-| terraform | ~> 1.0 |
-| aws | ~> 4.9 |
+| terraform | >= 1.1 |
+| aws | >= 4.9 |
 | cloudinit | ~> 2.0 |
 
 ## Providers ##
 
 | Name | Version |
 |------|---------|
-| aws | ~> 4.9 |
+| aws | >= 4.9 |
 | cloudinit | ~> 2.0 |
 
 ## Modules ##
