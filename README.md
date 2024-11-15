@@ -92,7 +92,7 @@ module "ipa1" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | ami\_owner\_account\_id | The ID of the AWS account that owns the FreeIPA server AMI, or "self" if the AMI is owned by the same account as the provisioner. | `string` | `"self"` | no |
-| aws\_instance\_type | The AWS instance type to deploy (e.g. t3.medium).  Two gigabytes of RAM is given as a minimum requirement for FreeIPA, but I have had intermittent problems when creating t3.small replicas. | `string` | `"t3.medium"` | no |
+| aws\_instance\_type | The AWS instance type to deploy (e.g. t3.medium).  Two gigabytes of RAM is given as a minimum requirement for FreeIPA, but I have had intermittent problems when creating even t3.medium replicas using a Fedora 41 AMI. | `string` | `"t3.large"` | no |
 | crowdstrike\_falcon\_sensor\_customer\_id\_key | The SSM Parameter Store key whose corresponding value contains the customer ID for CrowdStrike Falcon (e.g. /cdm/falcon/customer\_id). | `string` | n/a | yes |
 | crowdstrike\_falcon\_sensor\_install\_path | The install path of the CrowdStrike Falcon sensor (e.g. /opt/CrowdStrike). | `string` | `"/opt/CrowdStrike"` | no |
 | crowdstrike\_falcon\_sensor\_tags\_key | The SSM Parameter Store key whose corresponding value contains a comma-delimited list of tags that are to be applied to CrowdStrike Falcon (e.g. /cdm/falcon/tags). | `string` | n/a | yes |

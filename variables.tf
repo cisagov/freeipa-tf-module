@@ -83,8 +83,8 @@ variable "ami_owner_account_id" {
 }
 
 variable "aws_instance_type" {
-  default     = "t3.medium"
-  description = "The AWS instance type to deploy (e.g. t3.medium).  Two gigabytes of RAM is given as a minimum requirement for FreeIPA, but I have had intermittent problems when creating t3.small replicas."
+  default     = "t3.large"
+  description = "The AWS instance type to deploy (e.g. t3.medium).  Two gigabytes of RAM is given as a minimum requirement for FreeIPA, but I have had intermittent problems when creating even t3.medium replicas using a Fedora 41 AMI."
   nullable    = false
   type        = string
 }
